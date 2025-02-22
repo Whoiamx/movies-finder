@@ -10,7 +10,7 @@ export const FavMovieSection = () => {
 
   return (
     <>
-      <button onClick={() => handleNavigateVolver()}>
+      <button className="font-inter" onClick={() => handleNavigateVolver()}>
         Volver al menu principal
       </button>
       <MoviesFav />

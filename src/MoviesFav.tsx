@@ -10,14 +10,7 @@ export const MoviesFav = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
+    <div className="font-inter flex text-center justify-center items-center">
       {favmovies.map((movie) => (
         <div>
           <button onClick={() => handleDeleteThisMovie(movie.Title)}>❌</button>

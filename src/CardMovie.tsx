@@ -50,8 +50,8 @@ export const CardMovie = ({
   };
 
   return (
-    <div className="container-card">
-      <div>
+    <div className="container-card font-inter flex flex-col items-center justify-center">
+      <div className="text-center flex flex-col items-center justify-center p-5">
         <h2>{Title}</h2>
         <img src={Poster} alt={Title} />
         <p>Año de estreno: {Year}</p>
@@ -61,11 +61,19 @@ export const CardMovie = ({
         <p>Actores: {Actors}</p>
         <p>Director: {Director}</p>
       </div>
-      <div>
-        <button onClick={() => handleMovieToWatch()}>
+      <div className="flex justify-center items-center gap-10 p-5">
+        <button
+          className="text-black bg-slate-400 p-2 "
+          onClick={() => handleMovieToWatch()}
+        >
           Agregar a ver mas tarde
         </button>
-        <button onClick={() => handleMovieFav()}>Agregar a favoritos</button>
+        <button
+          className="text-black bg-yellow-400 p-2"
+          onClick={() => handleMovieFav()}
+        >
+          Agregar a favoritos
+        </button>
       </div>
       {modal ? (
         <div className="modal">Se agrego {Title} a la lista por ver </div>

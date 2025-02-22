@@ -22,28 +22,32 @@ function App() {
 
   return (
     <>
-      <div>
-        <header className="header">
-          <h1>Busca tu pelicula o serie favorita 🎬</h1>
-          <form className="form">
+      <div className="flex justify-center items-center font-inter">
+        <header className="flex flex-col p-5 justify-center items-center gap-8">
+          <h1 className="  text-white text-3xl  font-extrabold ">
+            Busca tu película o serie favorita 🎬
+          </h1>
+          <form className="flex justify-center gap-2 w-full">
             <input
+              className="text-white w-full max-w-[25em] p-2"
               ref={inputRef}
               type="text"
-              placeholder="Busca tu pelicula..."
+              placeholder="Ingresa el nombre de una película o serie"
             />
             <button
               id="search-button"
               onClick={(e) => searchMovie(e)}
               type="submit"
+              className="w-[20%] h-[2.5em] bg-orange-400 text-black text-[1.1rem] font-medium"
             >
               Buscar
             </button>
           </form>
-          <div className="nav-list">
-            <button>
+          <div className="flex gap-x-72 justify-around">
+            <button className="p-3 bg-slate-300 text-black">
               <Link to="/later"> Mi Lista por Ver 🕶</Link>
             </button>
-            <button>
+            <button className="text-black bg-yellow-500 p-2">
               <Link to="/favoritos">Mi Lista de Favoritos ⭐</Link>
             </button>
           </div>
