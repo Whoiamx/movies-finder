@@ -5,6 +5,7 @@ interface State {
   movies: Movie[];
   moviesSaved: Movie[];
   moviesToWatch: Movie[];
+  moviesSearched: Movie[];
   fetchedMovies: (movie: string) => void;
   savedMovies: (savedMovie: Movie[]) => void;
   toWatchMovies: (toWatch: Movie[]) => void;
@@ -17,6 +18,7 @@ export const useMovie = create<State>((set) => {
     movies: [],
     moviesSaved: [],
     moviesToWatch: [],
+    moviesSearched: [],
 
     fetchedMovies: async (movie: string) => {
       const res = await fetch(
@@ -55,6 +57,13 @@ export const useMovie = create<State>((set) => {
         moviesToWatch: state.moviesToWatch.filter((film) => {
           return film.Title !== movieToDelete;
         }),
+      }));
+    },
+
+    moviesSearchedHistory: (movieToAdd: Movie[]) => {
+      set((state) => ({
+        ...state,
+        moviesSearched: [...state.moviesSearched, ...movieToAdd],
       }));
     },
   };

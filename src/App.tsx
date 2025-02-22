@@ -22,11 +22,17 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center font-inter">
-        <header className="flex flex-col p-5 justify-center items-center gap-8">
-          <h1 className="  text-white text-3xl  font-extrabold ">
-            Busca tu película o serie favorita 🎬
-          </h1>
+      <header className="flex  p-5 justify-around items-center">
+        <h1 className="  text-white text-4xl  font-extrabold ">Filmzone 🎬</h1>
+        <nav className="flex justify-center items-center gap-2 text-center">
+          <ul className="flex gap-3">
+            <Link to="/later" className="text-white text-nowrap">
+              Peliculas para ver
+            </Link>
+            <Link className="text-white text-nowrap" to="/favoritos">
+              Tu lista de favoritos
+            </Link>
+          </ul>
           <form className="flex justify-center gap-2 w-full">
             <input
               className="text-white w-full max-w-[25em] p-2"
@@ -38,27 +44,49 @@ function App() {
               id="search-button"
               onClick={(e) => searchMovie(e)}
               type="submit"
-              className="w-[20%] h-[2.5em] bg-orange-400 text-black text-[1.1rem] font-medium"
+              className="w-[40%] h-[2.5em] bg-orange-400 text-black text-[1.1rem] font-medium"
             >
               Buscar
             </button>
           </form>
-          <div className="flex gap-x-72 justify-around">
-            <button className="p-3 bg-slate-300 text-black">
-              <Link to="/later"> Mi Lista por Ver 🕶</Link>
-            </button>
-            <button className="text-black bg-yellow-500 p-2">
-              <Link to="/favoritos">Mi Lista de Favoritos ⭐</Link>
-            </button>
-          </div>
-        </header>
-      </div>
+        </nav>
+      </header>
+      <main>
+        <section className="relative w-full h-[60vh] flex items-center justify-center text-white">
+          {/* Imagen de fondo con animación de opacidad */}
+          <div
+            className="absolute top-0 left-0 w-full h-full bg-no-repeat bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://a.ltrbxd.com/resized/sm/upload/cq/zm/xo/3z/wolf-of-wall-street-1200-1200-675-675-crop-000000.jpg')",
+              backgroundPosition: "center top",
+            }}
+          ></div>
 
-      {movieSelected && movieSelected.length > 0
-        ? movieSelected
-            .filter((movie) => movie.Title && movie.Title.trim() !== "")
-            .map((film, index) => (
-              <main>
+          {/* Overlay degradado oscuro */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40"></div>
+
+          {/* Contenido del Hero */}
+          <div className="relative z-10 text-center px-6">
+            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">
+              Haz un seguimiento de las películas que has visto.
+            </h1>
+            <p className="mt-4 text-lg md:text-xl max-w-xl mx-auto drop-shadow-md">
+              Guarda las que quieres ver.
+            </p>
+            <p className="mt-4 text-lg md:text-xl max-w-xl mx-auto drop-shadow-md">
+              Y lo más importante, guarda tus{" "}
+              <span className="text-yellow-200">favoritas</span>⭐
+            </p>
+          </div>
+        </section>
+
+        <h3>En base a tus ultimas busquedas</h3>
+
+        {movieSelected && movieSelected.length > 0
+          ? movieSelected
+              .filter((movie) => movie.Title && movie.Title.trim() !== "")
+              .map((film, index) => (
                 <div className="card-movie-container">
                   <CardMovie
                     key={index}
@@ -72,9 +100,9 @@ function App() {
                     Poster={film.Poster}
                   />
                 </div>
-              </main>
-            ))
-        : null}
+              ))
+          : null}
+      </main>
     </>
   );
 }
