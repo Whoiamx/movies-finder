@@ -4,17 +4,21 @@ import { useMovie } from "./store/movieStore";
 import { Link } from "react-router";
 
 import "./App.css";
+import { HistorialMovieSection } from "./components/HistorialMovieSection";
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const movieSelected = useMovie((state) => state.movies);
 
   const fetchedMovie = useMovie((state) => state.fetchedMovies);
 
+  const movieSearchedHistory = useMovie((state) => state.moviesSearchedHistory);
+
   const searchMovie = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (inputRef.current && inputRef.current.value.trim() !== "") {
-      const searchValue = inputRef.current.value.toLowerCase(); // Usamos el valor de inputRef
+      const searchValue = inputRef.current.value.toLowerCase();
       fetchedMovie(searchValue);
+      movieSearchedHistory(movieSelected);
     } else {
       console.log("Por favor ingresa un valor válido"); // Mensaje de error si el campo está vacío
     }
@@ -82,6 +86,7 @@ function App() {
         </section>
 
         <h3>En base a tus ultimas busquedas</h3>
+        <HistorialMovieSection />
 
         {movieSelected && movieSelected.length > 0
           ? movieSelected
