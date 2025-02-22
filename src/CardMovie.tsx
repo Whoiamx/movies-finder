@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { useMovie } from "./store/movieStore";
+
+import "./App.css";
 
 interface CardMovieProps {
   Title: string;
@@ -26,14 +29,24 @@ export const CardMovie = ({
   const saveMovie = useMovie((state) => state.savedMovies);
 
   const saveToWatchMovie = useMovie((state) => state.toWatchMovies);
-  console.log(saveToWatchMovie);
+
+  const [modal, setModal] = useState(false);
+  const [modalFav, setModalFav] = useState(false);
 
   const handleMovieFav = () => {
     saveMovie(movieSelected);
+    setModalFav(true);
+    setTimeout(() => {
+      setModalFav(false);
+    }, 2000);
   };
 
   const handleMovieToWatch = () => {
     saveToWatchMovie(movieSelected);
+    setModal(true);
+    setTimeout(() => {
+      setModal(false);
+    }, 2000);
   };
 
   return (
@@ -54,6 +67,15 @@ export const CardMovie = ({
         </button>
         <button onClick={() => handleMovieFav()}>Agregar a favoritos</button>
       </div>
+      {modal ? (
+        <div className="modal">Se agrego {Title} a la lista por ver </div>
+      ) : null}
+
+      {modalFav ? (
+        <div className="modalFav">
+          Se agrego {Title} a la lista de Favoritos
+        </div>
+      ) : null}
     </div>
   );
 };
