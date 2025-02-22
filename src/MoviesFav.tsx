@@ -1,9 +1,13 @@
 import { useMovie } from "./store/movieStore";
+import "./App.css";
 
 export const MoviesFav = () => {
   const favmovies = useMovie((state) => state.moviesSaved);
-
   const handleDeleteMovie = useMovie((state) => state.filterSavedMovies);
+
+  const handleDeleteThisMovie = (movie: string) => {
+    handleDeleteMovie(movie);
+  };
 
   return (
     <div
@@ -16,7 +20,7 @@ export const MoviesFav = () => {
     >
       {favmovies.map((movie) => (
         <div>
-          <button onClick={() => handleDeleteMovie(movie.Title)}>❌</button>
+          <button onClick={() => handleDeleteThisMovie(movie.Title)}>❌</button>
           <p>{movie.Title}</p>
           <img src={movie.Poster} alt={movie.Title} />
           <p>Año de estreno: {movie.Year}</p>
