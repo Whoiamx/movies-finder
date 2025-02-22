@@ -1,10 +1,8 @@
 import { useMovie } from "./store/movieStore";
 
-export const MoviesFav = () => {
-  const favmovies = useMovie((state) => state.moviesSaved);
-
-  const handleDeleteMovie = useMovie((state) => state.filterSavedMovies);
-
+export const MoviesLater = () => {
+  const latermovies = useMovie((state) => state.moviesToWatch);
+  const handleDeleteMovie = useMovie((state) => state.filterToWatchMovies);
   return (
     <div
       style={{
@@ -14,7 +12,7 @@ export const MoviesFav = () => {
         textAlign: "center",
       }}
     >
-      {favmovies.map((movie) => (
+      {latermovies.map((movie) => (
         <div>
           <button onClick={() => handleDeleteMovie(movie.Title)}>❌</button>
           <p>{movie.Title}</p>

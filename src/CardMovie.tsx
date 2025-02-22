@@ -26,6 +26,7 @@ export const CardMovie = ({
   const saveMovie = useMovie((state) => state.savedMovies);
 
   const saveToWatchMovie = useMovie((state) => state.toWatchMovies);
+  console.log(saveToWatchMovie);
 
   const handleMovieFav = () => {
     saveMovie(movieSelected);

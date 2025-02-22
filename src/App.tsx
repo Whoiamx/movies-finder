@@ -1,10 +1,9 @@
 import { CardMovie } from "./CardMovie";
-
-import "./App.css";
 import { MouseEvent, useRef } from "react";
 import { useMovie } from "./store/movieStore";
-import { MoviesFav } from "./MoviesFav";
+import { Link } from "react-router";
 
+import "./App.css";
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const movieSelected = useMovie((state) => state.movies);
@@ -41,12 +40,16 @@ function App() {
             </button>
           </form>
           <div className="nav-list">
-            <button>Mi Lista por Ver 🕶 </button>
-            <button>Mi Lista de Favoritos ⭐</button>
+            <button>
+              <Link to="/later"> Mi Lista por Ver 🕶</Link>
+            </button>
+            <button>
+              <Link to="/favoritos">Mi Lista de Favoritos ⭐</Link>
+            </button>
           </div>
         </header>
       </div>
-      <MoviesFav />
+
       {movieSelected && movieSelected.length > 0
         ? movieSelected
             .filter((movie) => movie.Title && movie.Title.trim() !== "")

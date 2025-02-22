@@ -8,6 +8,8 @@ interface State {
   fetchedMovies: (movie: string) => void;
   savedMovies: (savedMovie: Movie[]) => void;
   toWatchMovies: (toWatch: Movie[]) => void;
+  filterSavedMovies: (movieToDelete: string) => void;
+  filterToWatchMovies: (movieToDelete: string) => void;
 }
 
 export const useMovie = create<State>((set) => {
@@ -36,6 +38,23 @@ export const useMovie = create<State>((set) => {
       set((state) => ({
         ...state,
         moviesToWatch: [...state.moviesToWatch, ...toWatch],
+      }));
+    },
+
+    filterSavedMovies: (movieToDelete: string) => {
+      set((state) => ({
+        ...state,
+        moviesSaved: state.moviesSaved.filter((film) => {
+          return film.Title !== movieToDelete;
+        }),
+      }));
+    },
+    filterToWatchMovies: (movieToDelete: string) => {
+      set((state) => ({
+        ...state,
+        moviesToWatch: state.moviesToWatch.filter((film) => {
+          return film.Title !== movieToDelete;
+        }),
       }));
     },
   };
