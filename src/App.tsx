@@ -2,14 +2,14 @@ import { CardMovie } from "./CardMovie";
 import { MouseEvent, useRef } from "react";
 import { useMovie } from "./store/movieStore";
 import { HistorialMovieSection } from "./components/HistorialMovieSection";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 import "./App.css";
 
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const movieSelected = useMovie((state) => state.movies);
-  const navigate = useNavigate();
+
   const fetchedMovie = useMovie((state) => state.fetchedMovies);
   const historySearched = useMovie((state) => state.moviesSearchedHistory);
 
@@ -46,7 +46,7 @@ function App() {
           </ul>
           <form className="flex justify-center gap-2 w-full">
             <input
-              className="text-white w-full max-w-[25em] p-2"
+              className="w-full text-black max-w-[25em] p-2 rounded-md"
               ref={inputRef}
               type="text"
             />
@@ -97,9 +97,12 @@ function App() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40"></div>
 
             <div className="relative z-10 text-center px-6">
-              <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg border-solid border-black ">
-                Haz un seguimiento de las películas que has visto. 🔎
-              </h1>
+              <h2 className="text-4xl md:text-5xl font-bold drop-shadow-lg border-solid border-black ">
+                <span className="highlight">
+                  {" "}
+                  Haz un seguimiento de las películas que has visto. 🔎
+                </span>
+              </h2>
               <p className="mt-4 text-lg md:text-xl max-w-xl mx-auto drop-shadow-md">
                 Guarda las que quieres ver.
               </p>
@@ -109,10 +112,7 @@ function App() {
               </p>
             </div>
           </section>
-          <div className="flex min-h-[26em] flex-col  p-10 text-center gap-3 ">
-            <h3 className="text-white text-center font-extrabold text-2xl">
-              Tu historial de búsquedas
-            </h3>
+          <div className="flex min-h-[26em] flex-col  p-5  ">
             <HistorialMovieSection />
           </div>
         </main>

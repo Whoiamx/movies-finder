@@ -1,9 +1,18 @@
 import { MoviesHistory } from "../MoviesHistory";
+import { useMovie } from "../store/movieStore";
 
 export const HistorialMovieSection = () => {
+  const historyMovie = useMovie((state) => state.moviesSearched);
   return (
-    <div className="font-inter flex flex-col justify-center items-center p-5 ">
-      <MoviesHistory />
-    </div>
+    <>
+      {historyMovie.length ? (
+        <div className="font-inter flex flex-col p-4  ">
+          <h3 className="text-white font-extrabold text-2xl">
+            Tu historial de búsquedas
+          </h3>
+          <MoviesHistory />
+        </div>
+      ) : null}
+    </>
   );
 };

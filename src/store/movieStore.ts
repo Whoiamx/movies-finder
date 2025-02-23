@@ -30,6 +30,11 @@ export const useMovie = create<State>()(
             `http://www.omdbapi.com/?apikey=632ad8cc&t=${movie}`
           );
           const json = await res.json();
+          if (json.Response === "False") {
+            console.warn(`Película no encontrada: ${movie}`);
+            return;
+          }
+
           set({
             movies: [json],
           });
