@@ -112,9 +112,9 @@ function App() {
               </p>
             </div>
           </section>
-          <div className="flex min-h-[26em] flex-col  p-10 text-center ">
+          <div className="flex min-h-[26em] flex-col  p-10 text-center gap-3 ">
             <h3 className="text-white text-center font-extrabold text-2xl">
-              Tus ultimas busquedas...
+              Tu historial de busquedas
             </h3>
             <HistorialMovieSection />
           </div>

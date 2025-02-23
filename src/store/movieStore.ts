@@ -75,7 +75,13 @@ export const useMovie = create<State>()(
         moviesSearchedHistory: (movieToAdd: Movie[]) => {
           set((state) => ({
             ...state,
-            moviesSearched: [...state.moviesSearched, ...movieToAdd],
+            moviesSearched: [
+              ...state.moviesSearched,
+              ...movieToAdd.filter(
+                (movie) =>
+                  !state.moviesSearched.some((m) => m.Title === movie.Title)
+              ),
+            ],
           }));
         },
       };
