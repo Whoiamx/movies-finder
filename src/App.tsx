@@ -12,7 +12,6 @@ function App() {
   const navigate = useNavigate();
   const fetchedMovie = useMovie((state) => state.fetchedMovies);
   const historySearched = useMovie((state) => state.moviesSearchedHistory);
-  const moviesSearched = useMovie((state) => state.moviesSearched);
 
   const searchMovie = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -28,9 +27,8 @@ function App() {
   return (
     <>
       <header className="flex p-5 justify-around items-center">
-        <a onClick={() => navigate(0)}>
-          <h1 className="text-white text-4xl font-extrabold">Filmzone 🎬</h1>
-        </a>
+        <h1 className="text-white text-4xl font-extrabold">Filmzone 🎬</h1>
+
         <nav className="flex justify-center items-center gap-2 text-center">
           <ul className="flex gap-3">
             <Link
@@ -51,7 +49,6 @@ function App() {
               className="text-white w-full max-w-[25em] p-2"
               ref={inputRef}
               type="text"
-              placeholder="Ingresa el nombre de una película o serie"
             />
             <button
               id="search-button"
@@ -70,7 +67,7 @@ function App() {
           .map((film, index) => (
             <div className="card-movie-container    flex flex-col gap-4">
               <h4 className="text-center font-semibold text-3xl">
-                Resultados en base a tu busqueda...
+                Resultados en base a tu búsqueda...
               </h4>
               <CardMovie
                 key={index}
@@ -114,7 +111,7 @@ function App() {
           </section>
           <div className="flex min-h-[26em] flex-col  p-10 text-center gap-3 ">
             <h3 className="text-white text-center font-extrabold text-2xl">
-              Tu historial de busquedas
+              Tu historial de búsquedas
             </h3>
             <HistorialMovieSection />
           </div>
