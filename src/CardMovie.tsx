@@ -50,8 +50,8 @@ export const CardMovie = ({
   };
 
   return (
-    <div className="container-card font-inter flex flex-col items-center justify-center">
-      <div className="flex flex-col  p-5 gap-2">
+    <div className="container-card font-inter flex flex-col items-center justify-center p-5">
+      <div className="flex flex-col  gap-2">
         <h2 className="text-center font-extrabold text-2xl">{Title}</h2>
         <img className="w-2/4 mx-auto" src={Poster} alt={Title} />
         <p className="font-medium ">
