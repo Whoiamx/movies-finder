@@ -57,13 +57,19 @@ export const CardMovie = ({
 
   return (
     <div className="container-card font-inter flex flex-col items-center justify-center p-5">
-      <button onClick={() => handleReset()} className="flex justify bg-red-500">
-        Ir al inicio
-      </button>
-      <div className="flex flex-col  gap-2">
+      <div className="flex justify-start w-full">
+        <button
+          onClick={() => handleReset()}
+          className="bg-red-500 p-2 text-white"
+        >
+          ⬅ Ir al inicio
+        </button>
+      </div>
+
+      <div className="flex flex-col gap-2">
         <h2 className="text-center font-extrabold text-2xl">{Title}</h2>
         <img className="w-2/4 mx-auto" src={Poster} alt={Title} />
-        <p className="font-medium ">
+        <p className="font-medium">
           <span className="underline font-extrabold">Año de estreno:</span>{" "}
           {Year}
         </p>
@@ -73,7 +79,7 @@ export const CardMovie = ({
         <p className="font-medium">
           <span className="underline font-extrabold">Genero:</span> {Genre}
         </p>
-        <p className="font-medium ">
+        <p className="font-medium">
           <span className="underline font-extrabold">Rating:</span> {imdbRating}{" "}
           ⭐
         </p>
@@ -86,7 +92,7 @@ export const CardMovie = ({
       </div>
       <div className="flex justify-center items-center gap-10 p-5">
         <button
-          className="text-black bg-slate-400 p-2 font-semibold hover:bg-slate-300 "
+          className="text-black bg-slate-400 p-2 font-semibold hover:bg-slate-300"
           onClick={() => handleMovieToWatch()}
         >
           Agregar a ver mas tarde

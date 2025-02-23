@@ -1,9 +1,8 @@
 import { MoviesHistory } from "../MoviesHistory";
-import { useMovie } from "../store/movieStore";
 
 export const HistorialMovieSection = () => {
   return (
-    <div className="font-inter flex flex-col text-center justify-center items-center">
+    <div className="font-inter flex flex-col justify-center items-center p-5 ">
       <MoviesHistory />
     </div>
   );

@@ -11,12 +11,15 @@ function App() {
   const movieSelected = useMovie((state) => state.movies);
   const navigate = useNavigate();
   const fetchedMovie = useMovie((state) => state.fetchedMovies);
+  const historySearched = useMovie((state) => state.moviesSearchedHistory);
+  const moviesSearched = useMovie((state) => state.moviesSearched);
 
   const searchMovie = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (inputRef.current && inputRef.current.value.trim() !== "") {
       const searchValue = inputRef.current.value.toLowerCase();
       fetchedMovie(searchValue);
+      historySearched(movieSelected);
     } else {
       console.log("Por favor ingresa un valor válido"); // Mensaje de error si el campo está vacío
     }
@@ -109,9 +112,9 @@ function App() {
               </p>
             </div>
           </section>
-          <div className="flex min-h-[26em] flex-col  p-10">
+          <div className="flex min-h-[26em] flex-col  p-10 text-center ">
             <h3 className="text-white text-center font-extrabold text-2xl">
-              En base a tus ultimas busquedas
+              Tus ultimas busquedas...
             </h3>
             <HistorialMovieSection />
           </div>

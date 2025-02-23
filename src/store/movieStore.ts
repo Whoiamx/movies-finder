@@ -13,6 +13,7 @@ interface State {
   filterSavedMovies: (movieToDelete: string) => void;
   filterToWatchMovies: (movieToDelete: string) => void;
   resetSearch: () => void;
+  moviesSearchedHistory: (movieToAdd: Movie[]) => void;
 }
 
 export const useMovie = create<State>()(
