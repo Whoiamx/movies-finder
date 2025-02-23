@@ -54,22 +54,36 @@ export const CardMovie = ({
       <div className="flex flex-col  p-5 gap-2">
         <h2 className="text-center font-extrabold text-2xl">{Title}</h2>
         <img className="w-2/4 mx-auto" src={Poster} alt={Title} />
-        <p>Año de estreno: {Year}</p>
-        <p>Duracion: {Runtime}</p>
-        <p>Genero: {Genre}</p>
-        <p>Rating: {imdbRating} ⭐</p>
-        <p>Actores: {Actors}</p>
-        <p>Director: {Director}</p>
+        <p className="font-medium ">
+          <span className="underline font-extrabold">Año de estreno:</span>{" "}
+          {Year}
+        </p>
+        <p className="font-medium">
+          <span className="underline font-extrabold">Duracion:</span> {Runtime}
+        </p>
+        <p className="font-medium">
+          <span className="underline font-extrabold">Genero:</span> {Genre}
+        </p>
+        <p className="font-medium ">
+          <span className="underline font-extrabold">Rating:</span> {imdbRating}{" "}
+          ⭐
+        </p>
+        <p className="font-medium">
+          <span className="underline font-extrabold">Actores:</span> {Actors}
+        </p>
+        <p className="font-medium">
+          <span className="underline font-extrabold">Director:</span> {Director}
+        </p>
       </div>
       <div className="flex justify-center items-center gap-10 p-5">
         <button
-          className="text-black bg-slate-400 p-2 "
+          className="text-black bg-slate-400 p-2 font-semibold hover:bg-slate-300 "
           onClick={() => handleMovieToWatch()}
         >
           Agregar a ver mas tarde
         </button>
         <button
-          className="text-black bg-yellow-400 p-2"
+          className="text-black bg-yellow-400 p-2 font-semibold hover:bg-yellow-200"
           onClick={() => handleMovieFav()}
         >
           Agregar a favoritos

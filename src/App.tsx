@@ -98,9 +98,10 @@ function App() {
           ? movieSelected
               .filter((movie) => movie.Title && movie.Title.trim() !== "")
               .map((film, index) => (
-                <div className="card-movie-container p-5">
-                  <h4 className="text-white font-semibold text-center">
-                    Resultados de la busqueda..."{inputRef.current.value}"
+                <div className="card-movie-container p-5 flex flex-col gap-4">
+                  <h4 className="text-white font-semibold text-center text-xl">
+                    Resultados de la busqueda...
+                    <span className="italic">"{inputRef.current.value}"</span>
                   </h4>
                   <CardMovie
                     key={index}
