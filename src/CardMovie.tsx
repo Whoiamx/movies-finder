@@ -51,9 +51,9 @@ export const CardMovie = ({
 
   return (
     <div className="container-card font-inter flex flex-col items-center justify-center">
-      <div className="text-center flex flex-col items-center justify-center p-5">
-        <h2>{Title}</h2>
-        <img src={Poster} alt={Title} />
+      <div className="flex flex-col  p-5 gap-2">
+        <h2 className="text-center font-extrabold text-2xl">{Title}</h2>
+        <img className="w-2/4 mx-auto" src={Poster} alt={Title} />
         <p>Año de estreno: {Year}</p>
         <p>Duracion: {Runtime}</p>
         <p>Genero: {Genre}</p>

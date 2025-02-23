@@ -30,10 +30,16 @@ function App() {
         <h1 className="  text-white text-4xl  font-extrabold ">Filmzone 🎬</h1>
         <nav className="flex justify-center items-center gap-2 text-center">
           <ul className="flex gap-3">
-            <Link to="/later" className="text-white text-nowrap">
-              Peliculas para ver
+            <Link
+              to="/later"
+              className="text-white text-nowrap hover:text-blue-400"
+            >
+              Ver mas tarde
             </Link>
-            <Link className="text-white text-nowrap" to="/favoritos">
+            <Link
+              className="text-white text-nowrap hover:text-blue-400"
+              to="/favoritos"
+            >
               Tu lista de favoritos
             </Link>
           </ul>
@@ -48,7 +54,7 @@ function App() {
               id="search-button"
               onClick={(e) => searchMovie(e)}
               type="submit"
-              className="w-[40%] h-[2.5em] bg-orange-400 text-black text-[1.1rem] font-medium"
+              className="w-[40%] h-[2.5em] bg-orange-400 text-black text-[1.1rem] font-medium hover:bg-orange-200"
             >
               Buscar
             </button>
@@ -57,7 +63,6 @@ function App() {
       </header>
       <main>
         <section className="relative w-full h-[60vh] flex items-center justify-center text-white">
-          {/* Imagen de fondo con animación de opacidad */}
           <div
             className="absolute top-0 left-0 w-full h-full bg-no-repeat bg-cover bg-center"
             style={{
@@ -67,13 +72,11 @@ function App() {
             }}
           ></div>
 
-          {/* Overlay degradado oscuro */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40"></div>
 
-          {/* Contenido del Hero */}
           <div className="relative z-10 text-center px-6">
-            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">
-              Haz un seguimiento de las películas que has visto.
+            <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg border-solid border-black ">
+              Haz un seguimiento de las películas que has visto. 🔎
             </h1>
             <p className="mt-4 text-lg md:text-xl max-w-xl mx-auto drop-shadow-md">
               Guarda las que quieres ver.
@@ -84,15 +87,21 @@ function App() {
             </p>
           </div>
         </section>
-
-        <h3>En base a tus ultimas busquedas</h3>
-        <HistorialMovieSection />
+        <div className="flex flex-col justify-center items-center p-10">
+          <h3 className="text-white font-extrabold text-2xl">
+            En base a tus ultimas busquedas
+          </h3>
+          <HistorialMovieSection />
+        </div>
 
         {movieSelected && movieSelected.length > 0
           ? movieSelected
               .filter((movie) => movie.Title && movie.Title.trim() !== "")
               .map((film, index) => (
-                <div className="card-movie-container">
+                <div className="card-movie-container p-5">
+                  <h4 className="text-white font-semibold text-center">
+                    Resultados de la busqueda..."{inputRef.current.value}"
+                  </h4>
                   <CardMovie
                     key={index}
                     Title={film.Title}
