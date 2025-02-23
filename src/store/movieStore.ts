@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { Movie } from "../ApiResults";
+import { persist } from "zustand/middleware";
 
 interface State {
   movies: Movie[];
@@ -11,60 +12,73 @@ interface State {
   toWatchMovies: (toWatch: Movie[]) => void;
   filterSavedMovies: (movieToDelete: string) => void;
   filterToWatchMovies: (movieToDelete: string) => void;
+  resetSearch: () => void;
 }
 
-export const useMovie = create<State>((set) => {
-  return {
-    movies: [],
-    moviesSaved: [],
-    moviesToWatch: [],
-    moviesSearched: [],
+export const useMovie = create<State>()(
+  persist(
+    (set) => {
+      return {
+        movies: [],
+        moviesSaved: [],
+        moviesToWatch: [],
+        moviesSearched: [],
 
-    fetchedMovies: async (movie: string) => {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=632ad8cc&t=${movie}`
-      );
-      const json = await res.json();
-      set({
-        movies: [json],
-      });
-    },
+        fetchedMovies: async (movie: string) => {
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=632ad8cc&t=${movie}`
+          );
+          const json = await res.json();
+          set({
+            movies: [json],
+          });
+        },
 
-    savedMovies: (savedMovie: Movie[]) => {
-      set((state) => ({
-        ...state,
-        moviesSaved: [...state.moviesSaved, ...savedMovie],
-      }));
-    },
-    toWatchMovies: (toWatch: Movie[]) => {
-      set((state) => ({
-        ...state,
-        moviesToWatch: [...state.moviesToWatch, ...toWatch],
-      }));
-    },
+        savedMovies: (savedMovie: Movie[]) => {
+          set((state) => ({
+            ...state,
+            moviesSaved: [...state.moviesSaved, ...savedMovie],
+          }));
+        },
+        toWatchMovies: (toWatch: Movie[]) => {
+          set((state) => ({
+            ...state,
+            moviesToWatch: [...state.moviesToWatch, ...toWatch],
+          }));
+        },
 
-    filterSavedMovies: (movieToDelete: string) => {
-      set((state) => ({
-        ...state,
-        moviesSaved: state.moviesSaved.filter((film) => {
-          return film.Title !== movieToDelete;
-        }),
-      }));
-    },
-    filterToWatchMovies: (movieToDelete: string) => {
-      set((state) => ({
-        ...state,
-        moviesToWatch: state.moviesToWatch.filter((film) => {
-          return film.Title !== movieToDelete;
-        }),
-      }));
-    },
+        filterSavedMovies: (movieToDelete: string) => {
+          set((state) => ({
+            ...state,
+            moviesSaved: state.moviesSaved.filter((film) => {
+              return film.Title !== movieToDelete;
+            }),
+          }));
+        },
+        filterToWatchMovies: (movieToDelete: string) => {
+          set((state) => ({
+            ...state,
+            moviesToWatch: state.moviesToWatch.filter((film) => {
+              return film.Title !== movieToDelete;
+            }),
+          }));
+        },
 
-    moviesSearchedHistory: (movieToAdd: Movie[]) => {
-      set((state) => ({
-        ...state,
-        moviesSearched: [...state.moviesSearched, ...movieToAdd],
-      }));
+        resetSearch: () => {
+          set((state) => ({
+            ...state,
+            movies: [],
+          }));
+        },
+
+        moviesSearchedHistory: (movieToAdd: Movie[]) => {
+          set((state) => ({
+            ...state,
+            moviesSearched: [...state.moviesSearched, ...movieToAdd],
+          }));
+        },
+      };
     },
-  };
-});
+    { name: "Storage" }
+  )
+);

@@ -26,6 +26,8 @@ export const CardMovie = ({
 }: CardMovieProps) => {
   const movieSelected = useMovie((state) => state.movies);
 
+  const resetSearch = useMovie((state) => state.resetSearch);
+
   const saveMovie = useMovie((state) => state.savedMovies);
 
   const saveToWatchMovie = useMovie((state) => state.toWatchMovies);
@@ -49,8 +51,15 @@ export const CardMovie = ({
     }, 2000);
   };
 
+  const handleReset = () => {
+    resetSearch();
+  };
+
   return (
     <div className="container-card font-inter flex flex-col items-center justify-center p-5">
+      <button onClick={() => handleReset()} className="flex justify bg-red-500">
+        Ir al inicio
+      </button>
       <div className="flex flex-col  gap-2">
         <h2 className="text-center font-extrabold text-2xl">{Title}</h2>
         <img className="w-2/4 mx-auto" src={Poster} alt={Title} />

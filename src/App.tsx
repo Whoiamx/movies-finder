@@ -68,9 +68,6 @@ function App() {
             <div className="card-movie-container    flex flex-col gap-4">
               <h4 className="text-center font-semibold text-3xl">
                 Resultados en base a tu busqueda...
-                <span className="italic font-light">
-                  "{inputRef.current.value}"
-                </span>
               </h4>
               <CardMovie
                 key={index}
