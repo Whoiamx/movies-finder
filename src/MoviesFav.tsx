@@ -10,7 +10,7 @@ export const MoviesFav = () => {
   };
 
   return (
-    <div className="font-inter flex text-center justify-center items-center">
+    <div className="font-inter flex text-center justify-center gap-3 items-center">
       {favmovies.length ? (
         favmovies.map((movie, index) => (
           <div
