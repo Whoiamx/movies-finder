@@ -47,6 +47,8 @@ export const useMovie = create<State>()(
               ...state.moviesSaved,
               ...savedMovie.filter(
                 (movie) =>
+                  movie.Poster &&
+                  movie.Poster !== "N/A" &&
                   !state.moviesSaved.some((m) => m.Title === movie.Title)
               ),
             ],
@@ -60,7 +62,24 @@ export const useMovie = create<State>()(
               ...state.moviesToWatch,
               ...toWatch.filter(
                 (movie) =>
+                  movie.Poster &&
+                  movie.Poster !== "N/A" &&
                   !state.moviesToWatch.some((m) => m.Title === movie.Title)
+              ),
+            ],
+          }));
+        },
+
+        moviesSearchedHistory: (movieToAdd: Movie[]) => {
+          set((state) => ({
+            ...state,
+            moviesSearched: [
+              ...state.moviesSearched,
+              ...movieToAdd.filter(
+                (movie) =>
+                  movie.Poster &&
+                  movie.Poster !== "N/A" &&
+                  !state.moviesSearched.some((m) => m.Title === movie.Title)
               ),
             ],
           }));
@@ -86,19 +105,6 @@ export const useMovie = create<State>()(
           set((state) => ({
             ...state,
             movies: [],
-          }));
-        },
-
-        moviesSearchedHistory: (movieToAdd: Movie[]) => {
-          set((state) => ({
-            ...state,
-            moviesSearched: [
-              ...state.moviesSearched,
-              ...movieToAdd.filter(
-                (movie) =>
-                  !state.moviesSearched.some((m) => m.Title === movie.Title)
-              ),
-            ],
           }));
         },
       };
