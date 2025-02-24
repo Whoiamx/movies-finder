@@ -1,16 +1,17 @@
 import { useMovie } from "../store/movieStore";
 import { MoviesFavBannerItem } from "./MoviesFavBannerItem";
 
-export const MoviesFavBanner = () => {
-  const favmovies = useMovie((state) => state.moviesSaved);
+export const MoviesLaterBanner = () => {
+  const latermovies = useMovie((state) => state.moviesToWatch);
+
   return (
     <>
-      {favmovies.length ? (
+      {latermovies.length ? (
         <div className="font-inter flex flex-col p-4 gap-4">
           <h4 className="text-white font-extrabold text-2xl">
-            Tus favoritos ⭐
+            Tu lista para ver mas tarde ⌚
           </h4>
-          <MoviesFavBannerItem moviesToRender={favmovies} />
+          <MoviesFavBannerItem moviesToRender={latermovies} />
         </div>
       ) : null}
     </>

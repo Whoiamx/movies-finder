@@ -2,7 +2,6 @@ import { useMovie } from "./store/movieStore";
 
 export const MoviesHistory = () => {
   const historyMovie = useMovie((state) => state.moviesSearched);
-  console.log(historyMovie);
 
   return (
     <div className="flex  gap-2 overflow-x-auto scrollbar-hide">
@@ -13,18 +12,18 @@ export const MoviesHistory = () => {
         >
           <div className="relative">
             <img
-              className="w-full rounded-md shadow-lg"
+              className="w-[144px] h-[216px] rounded-md shadow-lg object-cover"
               src={movie.Poster}
               alt={movie.Title}
             />
             <div className="absolute inset-0 bg-black bg-opacity-80 text-white flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 rounded-md">
+              <h3 className="text-lg font-semibold">{movie.Title}</h3>
               <p className="text-sm">{movie.Genre}</p>
               <p className="text-yellow-400 font-semibold">
                 ⭐ {movie.imdbRating}
               </p>
             </div>
           </div>
-          <p className="text-white text-sm">{movie.Title}</p>
         </div>
       ))}
     </div>

@@ -6,6 +6,7 @@ import { Link } from "react-router";
 
 import "./App.css";
 import { MoviesFavBanner } from "./components/MoviesFavBanner";
+import { MoviesLaterBanner } from "./components/MoviesLaterBanner";
 
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -116,6 +117,7 @@ function App() {
           <div className="flex min-h-[26em] flex-col  p-5  ">
             <HistorialMovieSection />
             <MoviesFavBanner />
+            <MoviesLaterBanner />
           </div>
         </main>
       )}
