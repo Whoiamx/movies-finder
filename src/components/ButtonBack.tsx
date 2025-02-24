@@ -9,8 +9,11 @@ export const ButtonBack = () => {
 
   return (
     <>
-      <button className="font-inter" onClick={() => handleNavigateVolver()}>
-        Volver al menu principal
+      <button
+        className="font-inter bg-blue-500 p-2"
+        onClick={() => handleNavigateVolver()}
+      >
+        ⬅ Volver al menu principal
       </button>
     </>
   );
