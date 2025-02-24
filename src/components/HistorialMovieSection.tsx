@@ -6,9 +6,9 @@ export const HistorialMovieSection = () => {
   return (
     <>
       {historyMovie.length ? (
-        <div className="font-inter flex flex-col p-4  ">
+        <div className="font-inter flex flex-col p-4 gap-4 ">
           <h3 className="text-white font-extrabold text-2xl">
-            Tu historial de búsquedas
+            Tu historial de búsquedas 🔍
           </h3>
           <MoviesHistory />
         </div>
