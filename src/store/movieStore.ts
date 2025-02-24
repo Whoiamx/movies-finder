@@ -27,7 +27,7 @@ export const useMovie = create<State>()(
 
         fetchedMovies: async (movie: string) => {
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=632ad8cc&t=${movie}`
+            `https://www.omdbapi.com/?apikey=632ad8cc&t=${movie}`
           );
           const json = await res.json();
           if (json.Response === "False") {
