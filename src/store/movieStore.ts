@@ -43,16 +43,28 @@ export const useMovie = create<State>()(
         savedMovies: (savedMovie: Movie[]) => {
           set((state) => ({
             ...state,
-            moviesSaved: [...state.moviesSaved, ...savedMovie],
-          }));
-        },
-        toWatchMovies: (toWatch: Movie[]) => {
-          set((state) => ({
-            ...state,
-            moviesToWatch: [...state.moviesToWatch, ...toWatch],
+            moviesSaved: [
+              ...state.moviesSaved,
+              ...savedMovie.filter(
+                (movie) =>
+                  !state.moviesSaved.some((m) => m.Title === movie.Title)
+              ),
+            ],
           }));
         },
 
+        toWatchMovies: (toWatch: Movie[]) => {
+          set((state) => ({
+            ...state,
+            moviesToWatch: [
+              ...state.moviesToWatch,
+              ...toWatch.filter(
+                (movie) =>
+                  !state.moviesToWatch.some((m) => m.Title === movie.Title)
+              ),
+            ],
+          }));
+        },
         filterSavedMovies: (movieToDelete: string) => {
           set((state) => ({
             ...state,
